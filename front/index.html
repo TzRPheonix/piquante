@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <form id="loginForm" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+  <script>
+    const formData = new FormData(document.getElementById('loginForm'));
+    fetch('/', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Login successful')
+            } else {
+                console.log('Login failed')
+            }
+        })
+        .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
